@@ -40,14 +40,14 @@ class Main {
     required this.grndLevel,
   });
 
-  final double temp;
-  final double feelsLike;
-  final double tempMin;
-  final double tempMax;
-  final int pressure;
-  final int humidity;
-  final int seaLevel;
-  final int grndLevel;
+  final double? temp;
+  final double? feelsLike;
+  final double? tempMin;
+  final double? tempMax;
+  final int? pressure;
+  final int? humidity;
+  final int? seaLevel;
+  final int? grndLevel;
 
   factory Main.fromJson(String str) => Main.fromMap(json.decode(str));
 
