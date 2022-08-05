@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_weather_app/pages/weather_details.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -49,7 +50,17 @@ class _HomepageState extends State<Homepage> {
               ),
               const SizedBox(height: 25),
               ElevatedButton(
-                onPressed: _inputIsEmpty ? null : () {},
+                onPressed: _inputIsEmpty
+                    ? null
+                    : () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => WeatherDetails(
+                                cityName: _controller.text,
+                              ),
+                            ));
+                      },
                 child: const Text("check weather"),
               )
             ],
