@@ -56,7 +56,7 @@ class _HomepageState extends State<Homepage> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => WeatherDetails(
+                              builder: (context) => PokemonDetails(
                                 cityName: _controller.text,
                               ),
                             ));
