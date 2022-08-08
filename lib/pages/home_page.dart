@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_weather_app/pages/weather_details.dart';
+import 'package:flutter_pokemon_app/pages/pokemon_details.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -26,7 +26,7 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Center(child: Text("My Weather App"))),
+      appBar: AppBar(title: const Center(child: Text("Pokemon App"))),
       body: Padding(
         padding: const EdgeInsets.all(30),
         child: Center(
@@ -34,7 +34,7 @@ class _HomepageState extends State<Homepage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text(
-                "Enter City Name",
+                "Find Pokemon",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 25),
@@ -43,7 +43,7 @@ class _HomepageState extends State<Homepage> {
                 controller: _controller,
                 textAlign: TextAlign.center,
                 decoration: const InputDecoration(
-                    label: Text("City name"),
+                    label: Text("Pokemon Name"),
                     floatingLabelBehavior: FloatingLabelBehavior.auto,
                     border: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.green))),
@@ -61,7 +61,7 @@ class _HomepageState extends State<Homepage> {
                               ),
                             ));
                       },
-                child: const Text("check weather"),
+                child: const Text("Find Pokemon"),
               )
             ],
           ),

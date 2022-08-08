@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_weather_app/states/pokemon_states.dart';
+import 'package:flutter_pokemon_app/states/pokemon_states.dart';
 import '../models/pokemon_model.dart';
 import '../services/pokemon_services.dart';
 

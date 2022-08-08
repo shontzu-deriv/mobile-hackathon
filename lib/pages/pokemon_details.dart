@@ -1,10 +1,9 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_weather_app/widgets/weather_information.dart';
-
 import '../states/pokemon_cubit.dart';
 import '../states/pokemon_states.dart';
+import '../widgets/pokemon_information.dart';
 
 class PokemonDetails extends StatelessWidget {
   const PokemonDetails({Key? key, required this.cityName}) : super(key: key);

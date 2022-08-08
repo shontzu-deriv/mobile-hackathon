@@ -1,5 +1,5 @@
-name: flutter_weather_app
-description: A new Flutter project.
+name: flutter_pokemon_app
+description: A Pokemon card deck developed as a Hackathon project for Mobile Dev module.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.

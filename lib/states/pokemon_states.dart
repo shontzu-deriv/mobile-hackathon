@@ -1,4 +1,4 @@
-import 'package:flutter_weather_app/models/pokemon_model.dart';
+import '../models/pokemon_model.dart';
 
 abstract class PokemonStates{}
 
