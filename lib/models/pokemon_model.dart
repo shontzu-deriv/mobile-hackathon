@@ -1,7 +1,6 @@
 // To parse this JSON data, do
 //
 //     final PokemonModel = PokemonModelFromMap(jsonString);
-
 import 'package:meta/meta.dart';
 import 'dart:convert';
 

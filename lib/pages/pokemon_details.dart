@@ -13,10 +13,10 @@ class PokemonDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     PokemonCubit cubit = BlocProvider.of<PokemonCubit>(context)
-      ..fetchPokemon(/*pokeId*/);
+      ..fetchPokemons(/*pokeId*/);
 
     return Scaffold(
-      appBar: AppBar(title:Text("Weather Details"),),
+      appBar: AppBar(title:Text("Pokemon Versus"),),
       body: Center(
           child: BlocBuilder<PokemonCubit, PokemonStates>(
               bloc: BlocProvider.of<PokemonCubit>(context),
@@ -25,7 +25,7 @@ class PokemonDetails extends StatelessWidget {
 
                 if(state is PokemonLoaded) return PokemonInformation(pokemonModel: state.pokemonModel);
 
-                return const Text("some error occurred while fetching weather data");
+                return const Text("some error occurred while fetching the data");
               }
           )
       ),

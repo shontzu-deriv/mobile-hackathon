@@ -14,7 +14,7 @@ class PokemonInformation extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(pokemonModel.name, style: const TextStyle(fontSize: 50),),
+              Text((pokemonModel.name).toString(), style: const TextStyle(fontSize: 50),),
               Text((pokemonModel.baseExperience).toString(), style: const TextStyle(fontSize: 50),),
               // Image.network('http://openweathermap.org/img/wn/${weatherModel.weather.first.icon}@2x.png'),
             ],

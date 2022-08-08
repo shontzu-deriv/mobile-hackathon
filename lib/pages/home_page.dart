@@ -9,19 +9,6 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  bool _inputIsEmpty = true;
-  late final TextEditingController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _controller = TextEditingController();
-    _controller.addListener(() {
-      if (_controller.text != '') setState(() => _inputIsEmpty = false);
-      if (_controller.text == '') setState(() => _inputIsEmpty = true);
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,11 +32,14 @@ class _HomepageState extends State<Homepage> {
               context,
               MaterialPageRoute(
                 builder: (context) => PokemonDetails(
-                  // pokeId: _controller.text,
-                ),
+                    // pokeId: _controller.text,
+                    ),
               ));
         },
-        child: const Text("VERSUS"),
+        child: const Text(
+          "VERSUS",
+          style: TextStyle(fontSize: 20),
+        ),
       ),
     );
   }

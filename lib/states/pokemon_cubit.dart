@@ -8,7 +8,7 @@ class PokemonCubit extends Cubit<PokemonStates> {
   PokemonCubit() : super(PokemonLoading());
 
   //function for fetching data from server
-  Future<void> fetchPokemon(/*String pokeId*/) async {
+  Future<void> fetchPokemons(/*String pokeId*/) async {
     PokemonService pokemonService = PokemonService();
 
     try {
