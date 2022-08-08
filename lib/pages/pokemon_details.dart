@@ -6,14 +6,14 @@ import '../states/pokemon_states.dart';
 import '../widgets/pokemon_information.dart';
 
 class PokemonDetails extends StatelessWidget {
-  const PokemonDetails({Key? key, required this.cityName}) : super(key: key);
+  const PokemonDetails({Key? key, /*required this.pokeId*/}) : super(key: key);
 
-  final String cityName;
+  // final String pokeId;
 
   @override
   Widget build(BuildContext context) {
     PokemonCubit cubit = BlocProvider.of<PokemonCubit>(context)
-      ..fetchWeather(cityName);
+      ..fetchPokemon(/*pokeId*/);
 
     return Scaffold(
       appBar: AppBar(title:Text("Weather Details"),),

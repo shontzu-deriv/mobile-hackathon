@@ -29,43 +29,27 @@ class _HomepageState extends State<Homepage> {
       appBar: AppBar(title: const Center(child: Text("Pokemon App"))),
       body: Padding(
         padding: const EdgeInsets.all(30),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text(
-                "Find Pokemon",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 25),
-              TextField(
-                maxLength: 20,
-                controller: _controller,
-                textAlign: TextAlign.center,
-                decoration: const InputDecoration(
-                    label: Text("Pokemon Name"),
-                    floatingLabelBehavior: FloatingLabelBehavior.auto,
-                    border: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.green))),
-              ),
-              const SizedBox(height: 25),
-              ElevatedButton(
-                onPressed: _inputIsEmpty
-                    ? null
-                    : () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => PokemonDetails(
-                                cityName: _controller.text,
-                              ),
-                            ));
-                      },
-                child: const Text("Find Pokemon"),
-              )
-            ],
-          ),
-        ),
+        // child: TextField(
+        //   controller: _controller,
+        //   textAlign: TextAlign.center,
+        //   decoration: const InputDecoration(
+        //       label: Text("Search Pokemon"),
+        //       floatingLabelBehavior: FloatingLabelBehavior.auto,
+        //       border: OutlineInputBorder(
+        //           borderSide: BorderSide(color: Colors.green))),
+        // ),
+      ),
+      floatingActionButton: ElevatedButton(
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => PokemonDetails(
+                  // pokeId: _controller.text,
+                ),
+              ));
+        },
+        child: const Text("VERSUS"),
       ),
     );
   }
