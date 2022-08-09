@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_pokemon_app/pages/home_page.dart';
 import 'package:flutter_pokemon_app/pages/landing_page.dart';
 import 'package:flutter_pokemon_app/states/pokemon_list_cubit.dart';
 
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
-      home: const LandingPage(),
+      home: const Homepage(),
     );
   }
 }
