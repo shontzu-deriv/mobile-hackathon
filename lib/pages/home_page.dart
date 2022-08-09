@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pokemon_app/pages/pokemon_details.dart';
+import 'package:flutter_pokemon_app/pages/result_page.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -39,9 +40,7 @@ class _HomepageState extends State<Homepage> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => PokemonDetails(
-                  pokeId: _pokeController.text,
-                ),
+                builder: (context) => Resultpage(),
               ));
         },
         child: const Text(
@@ -49,6 +48,7 @@ class _HomepageState extends State<Homepage> {
           style: TextStyle(fontSize: 20),
         ),
       ),
+
     );
   }
 }
