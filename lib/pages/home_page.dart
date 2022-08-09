@@ -10,21 +10,29 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
 
+  late TextEditingController _pokeController;
+
+  @override
+  void initState() {
+    super.initState();
+    _pokeController = TextEditingController();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Center(child: Text("Pokemon App"))),
       body: Padding(
         padding: const EdgeInsets.all(30),
-        // child: TextField(
-        //   controller: _controller,
-        //   textAlign: TextAlign.center,
-        //   decoration: const InputDecoration(
-        //       label: Text("Search Pokemon"),
-        //       floatingLabelBehavior: FloatingLabelBehavior.auto,
-        //       border: OutlineInputBorder(
-        //           borderSide: BorderSide(color: Colors.green))),
-        // ),
+        child: TextField(
+          controller: _pokeController,
+          textAlign: TextAlign.center,
+          decoration: const InputDecoration(
+              label: Text("Search Pokemon"),
+              floatingLabelBehavior: FloatingLabelBehavior.auto,
+              border: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.green))),
+        ),
       ),
       floatingActionButton: ElevatedButton(
         onPressed: () {
@@ -32,8 +40,8 @@ class _HomepageState extends State<Homepage> {
               context,
               MaterialPageRoute(
                 builder: (context) => PokemonDetails(
-                    // pokeId: _controller.text,
-                    ),
+                  pokeId: _pokeController.text,
+                ),
               ));
         },
         child: const Text(
