@@ -3,7 +3,6 @@ import 'package:flutter_pokemon_app/states/pokemon_states.dart';
 import '../models/pokemon_model.dart';
 import '../services/pokemon_services.dart';
 
-
 class PokemonCubit extends Cubit<PokemonStates> {
   PokemonCubit() : super(PokemonLoading());
 
@@ -14,11 +13,9 @@ class PokemonCubit extends Cubit<PokemonStates> {
     try {
       PokemonModel pokemonModel = await pokemonService.fetchPokemons(pokeId);
       emit(PokemonLoaded(pokemonModel: pokemonModel));
-      }catch(e)
-      {
-        print(e);
-        emit(PokemonError(errorMessage: e.toString()));
-      }
+    } catch (e) {
+      print(e);
+      emit(PokemonError(errorMessage: e.toString()));
     }
-
+  }
 }
