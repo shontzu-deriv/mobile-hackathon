@@ -9,6 +9,7 @@ import '../states/pokemon_states.dart';
 import '../widgets/pokemon_information.dart';
 import 'home_page.dart';
 
+
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
 
@@ -92,10 +93,7 @@ class _HomepageState extends State<Homepage> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) =>
-                    PokemonDetails(
-                      pokeId: _pokeController.text,
-                    ),
+                builder: (context) => Resultpage(),
               ));
         },
         child: const Text(
@@ -103,6 +101,7 @@ class _HomepageState extends State<Homepage> {
           style: TextStyle(fontSize: 20),
         ),
       ),
+
     );
   }
 }
