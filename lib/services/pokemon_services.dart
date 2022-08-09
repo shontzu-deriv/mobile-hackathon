@@ -8,7 +8,7 @@ class PokemonService {
       scheme: 'https',
       host: 'pokeapi.co',
       path:'/api/v2/pokemon/$pokeId',
-      queryParameters: { 'q': pokeId},
+      // queryParameters: { 'q': pokeId},
     );
 
     http.Response response = await http.get(url);
