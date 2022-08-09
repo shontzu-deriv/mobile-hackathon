@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_pokemon_app/pages/result_page.dart';
 import '../states/pokemon_cubit.dart';
 import '../states/pokemon_list_cubit.dart';
 import '../states/pokemon_list_states.dart';
@@ -8,7 +9,6 @@ import '../pages/pokemon_details.dart';
 import '../states/pokemon_states.dart';
 import '../widgets/pokemon_information.dart';
 import 'home_page.dart';
-
 
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -18,7 +18,6 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-
   late TextEditingController _pokeController;
 
   @override
@@ -86,8 +85,6 @@ class _HomepageState extends State<Homepage> {
           ],
         ),
       ),
-
-
       floatingActionButton: ElevatedButton(
         onPressed: () {
           Navigator.push(
@@ -101,7 +98,6 @@ class _HomepageState extends State<Homepage> {
           style: TextStyle(fontSize: 20),
         ),
       ),
-
     );
   }
 }
