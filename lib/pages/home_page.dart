@@ -1,13 +1,11 @@
-import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../states/pokemon_cubit.dart';
+
 import '../states/pokemon_list_cubit.dart';
 import '../states/pokemon_list_states.dart';
 import '../pages/pokemon_details.dart';
-import '../states/pokemon_states.dart';
-import '../widgets/pokemon_information.dart';
-import 'home_page.dart';
+
 
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -17,7 +15,7 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-
+  bool isChecked = false;
   late TextEditingController _pokeController;
 
   @override
@@ -28,6 +26,7 @@ class _HomepageState extends State<Homepage> {
 
   @override
   Widget build(BuildContext context) {
+
     PokemonListCubit cubit = BlocProvider.of<PokemonListCubit>(context)
       ..fetchAllPokemonList();
 
@@ -54,6 +53,7 @@ class _HomepageState extends State<Homepage> {
                       return const CircularProgressIndicator();
 
                     if (state is PokemonListLoaded) {
+                      final double viewportWidth=MediaQuery.of(context).size.width;
                       return ListView(
                         // Create grid with 2 columns (scrollDirection horizontal produces 2 rows)
                         // crossAxisCount: 1,
@@ -61,15 +61,36 @@ class _HomepageState extends State<Homepage> {
                         children: List.generate(
                             state.pokemonListModel.results.length, (i) {
                           return Card(
-                            child: Column(
-                              // mainAxisSize: MainAxisSize.min,
-
-                              children: <Widget>[
-                                const ListTile(
+                            child: Row(
+                              children: [
+                                ConstrainedBox(constraints: BoxConstraints(maxWidth: viewportWidth*0.70),child:const ListTile(
                                   leading: Icon(Icons.album, size: 45),
-                                  title: Text('Sonu Nigam'),
-                                  subtitle: Text('Best of Sonu Nigam Song'),
-                                ),
+                                  // title: Text('${state.pokemonListModel.results[i].name}'),
+
+                                  subtitle: Text('Best of Sonu Nigam Song')
+                                )),
+                          // Color getColor(Set<MaterialState> states) {
+                          // const Set<MaterialState> interactiveStates = <MaterialState>{
+                          // MaterialState.pressed,
+                          // MaterialState.hovered,
+                          // MaterialState.focused,
+                          // };
+                          // if (states.any(interactiveStates.contains)) {
+                          // return Colors.blue;
+                          // }
+                          // return Colors.red;
+                          // }
+                          ConstrainedBox(constraints: BoxConstraints(maxWidth: viewportWidth*0.10),child:
+                           Checkbox(
+                          checkColor: Colors.white,
+                          // fillColor: MaterialStateProperty.resolveWith(getColor),
+                          value: isChecked,
+                          onChanged: (bool? value) {
+                          setState(() {
+                          isChecked = value!;
+                          });
+                          },
+                          ))
                               ],
                             ),
                           );
