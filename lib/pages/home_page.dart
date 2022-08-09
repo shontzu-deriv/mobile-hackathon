@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../states/pokemon_list_cubit.dart';
 import '../states/pokemon_list_states.dart';
-import '../pages/pokemon_details.dart';
+import '../pages/result_page.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -13,9 +13,9 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  List<int> selected=List.empty(growable: true);
+  List<int> selected = List.empty(growable: true);
   late TextEditingController _pokeController;
-  bool get canSelectMore=>selected.length<2;
+  bool get canSelectMore => selected.length < 2;
 
   @override
   void initState() {
@@ -65,15 +65,14 @@ class _HomepageState extends State<Homepage> {
                                   ConstrainedBox(
                                       constraints: BoxConstraints(
                                           maxWidth: viewportWidth * 0.70),
-                                      child:  ListTile(
+                                      child: ListTile(
+                                        leading: Image.network(
+                                            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${i + 1}.gif"),
+                                        title: Text(state
+                                            .pokemonListModel.results[i].name),
 
-                                          leading:  Image.network(
-                                              "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${i + 1}.gif"),
-                                          title: Text(state.pokemonListModel.results[i].name),
-
-                                          // subtitle:
+                                        // subtitle:
                                       )),
-
                                   ConstrainedBox(
                                       constraints: BoxConstraints(
                                           maxWidth: viewportWidth * 0.10),
@@ -81,16 +80,18 @@ class _HomepageState extends State<Homepage> {
                                         checkColor: Colors.white,
                                         // fillColor: MaterialStateProperty.resolveWith(getColor),
                                         value: selected.contains(i),
-                                        onChanged:(selected.contains(i)||canSelectMore)? (bool? value) {
-                                          setState(() {
-                                              if(value!=null&&value){
-                                                selected.add(i);
+                                        onChanged: (selected.contains(i) ||
+                                                canSelectMore)
+                                            ? (bool? value) {
+                                                setState(() {
+                                                  if (value != null && value) {
+                                                    selected.add(i);
+                                                  } else {
+                                                    selected.remove(i);
+                                                  }
+                                                });
                                               }
-                                              else{
-                                                selected.remove(i);
-                                              }
-                                          });
-                                        }:null,
+                                            : null,
                                       ))
                                 ],
                               ),
@@ -112,9 +113,7 @@ class _HomepageState extends State<Homepage> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => PokemonDetails(
-                  pokeId: _pokeController.text,
-                ),
+                builder: (context) => Resultpage(),
               ));
         },
         child: const Text(
