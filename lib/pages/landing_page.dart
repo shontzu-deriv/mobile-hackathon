@@ -30,7 +30,7 @@ class LandingPage extends StatelessWidget {
                 if (state is PokemonListLoaded) {
                   return GridView.count(
                     // Create grid with 2 columns (scrollDirection horizontal produces 2 rows)
-                    crossAxisCount: 2,
+                    crossAxisCount: 3,
                     // Generate 100 widgets that display their index in the List.
                     children: List.generate(
                         state.pokemonListModel.results.length, (i) {
@@ -67,15 +67,16 @@ class LandingPage extends StatelessWidget {
                           child: Container(
                             child: Column(
                               children: <Widget>[
-                                ListTile(
-                                  title: Text(
-                                      "${state.pokemonListModel.results[i].name}"),
+                                FittedBox(
+                                  child: Image.network(
+                                    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${i + 1}.gif",
+                                    fit: BoxFit.fill,
+                                    height: 100,
+                                    width: 100,
+                                  ),
                                 ),
-                                Image.network(
-                                  "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${i + 1}.gif",
-                                  // height: 100,
-                                  // width: 100,
-                                )
+                                Text(
+                                    "${state.pokemonListModel.results[i].name}"),
                               ],
                             ),
                           ),
