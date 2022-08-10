@@ -16,19 +16,22 @@ class PokemonDetails extends StatelessWidget {
       ..fetchPokemons(pokeId);
 
     return Scaffold(
-      appBar: AppBar(title:Text("Pokemon Versus"),),
+      appBar: AppBar(
+        title: Text("Pokemon Versus"),
+      ),
       body: Center(
           child: BlocBuilder<PokemonCubit, PokemonStates>(
               bloc: BlocProvider.of<PokemonCubit>(context),
               builder: (context, state) {
-                if (state is PokemonLoading) return const CircularProgressIndicator();
+                if (state is PokemonLoading)
+                  return const CircularProgressIndicator();
 
-                if(state is PokemonLoaded) return PokemonInformation(pokemonModel: state.pokemonModel);
+                if (state is PokemonLoaded)
+                  return PokemonInformation(pokemonModel: state.pokemonModel);
 
-                return const Text("some error occurred while fetching the data");
-              }
-          )
-      ),
+                return const Text(
+                    "some error occurred while fetching the data");
+              })),
     );
   }
 }
