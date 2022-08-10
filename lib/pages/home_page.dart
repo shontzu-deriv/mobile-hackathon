@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:flutter_pokemon_app/pages/result_page.dart';
+import '../states/pokemon_cubit.dart';
 import '../states/pokemon_list_cubit.dart';
 import '../states/pokemon_list_states.dart';
-import '../pages/result_page.dart';
+import '../pages/pokemon_details.dart';
+import '../states/pokemon_states.dart';
+import '../widgets/pokemon_information.dart';
+import 'home_page.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -14,6 +18,7 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
   List<int> selected = List.empty(growable: true);
+
   late TextEditingController _pokeController;
   bool get canSelectMore => selected.length < 2;
 
