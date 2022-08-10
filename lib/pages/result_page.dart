@@ -28,17 +28,17 @@ class _ResultpageState extends State<Resultpage> {
         children: [
           Container(
             color: Colors.pink,
-            width: 350,
+            width: 410,
             height: 200,
             child: Center(
-              child: Text('Pokemon 1'),
+              child: Image.network(''),
             ),
           ),
 
           Container(
             color: Colors.white,
-            width: 350,
-            height: 100,
+            width: 410,
+            height: 200,
             child: Center(
               child: Image.network('https://media.baamboozle.com/uploads/images/417119/1628139419_225816_gif-url.gif'),
             ),
@@ -46,10 +46,10 @@ class _ResultpageState extends State<Resultpage> {
 
             Container(
               color: Colors.blue,
-              width: 350,
+              width: 410,
               height: 200,
               child: Center(
-                child: Text('Pokemon 2'),
+                  child: Image.network(''),
               ),
           )
           ]

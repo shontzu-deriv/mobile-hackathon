@@ -30,30 +30,55 @@ class LandingPage extends StatelessWidget {
                 if (state is PokemonListLoaded) {
                   return GridView.count(
                     // Create grid with 2 columns (scrollDirection horizontal produces 2 rows)
-                    crossAxisCount: 2,
+                    crossAxisCount: 3,
                     // Generate 100 widgets that display their index in the List.
                     children: List.generate(
                         state.pokemonListModel.results.length, (i) {
-                      return Card(
-                        // color: Colors.orange[200],
-                        shape: RoundedRectangleBorder(
-                          side: BorderSide(color: Colors.grey, width: 0.5),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        margin: EdgeInsets.all(10.0),
-                        child: Container(
-                          child: Column(
-                            children: <Widget>[
-                              ListTile(
-                                title: Text(
+                      return GestureDetector(
+                        onTap: () {
+                          showDialog(
+                            context: context,
+                            builder: (ctx) => AlertDialog(
+                              title:
+                                  Text(state.pokemonListModel.results[i].name),
+                              content:
+                                  Text(state.pokemonListModel.results[i].name),
+                              actions: <Widget>[
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.of(ctx).pop();
+                                  },
+                                  child: Container(
+                                    padding: const EdgeInsets.all(14),
+                                    child: const Text("close"),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                        child: Card(
+                          // color: Colors.orange[200],
+                          shape: RoundedRectangleBorder(
+                            side: BorderSide(color: Colors.grey, width: 0.5),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          margin: EdgeInsets.all(10.0),
+                          child: Container(
+                            child: Column(
+                              children: <Widget>[
+                                FittedBox(
+                                  child: Image.network(
+                                    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${i + 1}.gif",
+                                    fit: BoxFit.fill,
+                                    height: 100,
+                                    width: 100,
+                                  ),
+                                ),
+                                Text(
                                     "${state.pokemonListModel.results[i].name}"),
-                              ),
-                              Image.network(
-                                "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${i + 1}.gif",
-                                // height: 100,
-                                // width: 100,
-                              )
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       );
