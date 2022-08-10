@@ -10,9 +10,7 @@ import '../states/pokemon_states.dart';
 import '../widgets/pokemon_information.dart';
 import 'home_page.dart';
 
-void searchPokemon(String query){
-
-}
+void searchPokemon(String query) {}
 
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -23,14 +21,24 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
   List<String> selected = List.empty(growable: true);
+  List<Map<String, String>> pokemons = [];
 
   late TextEditingController _pokeController;
+
   bool get canSelectMore => selected.length < 2;
 
   @override
   void initState() {
     super.initState();
     _pokeController = TextEditingController();
+    setState(() {
+      selected.clear();
+      pokemons.clear();
+    });
+  }
+
+  void didPop() {
+    pokemons.clear();
   }
 
   @override
@@ -47,11 +55,11 @@ class _HomepageState extends State<Homepage> {
             TextField(
               controller: _pokeController,
               textAlign: TextAlign.center,
-              onChanged: (_){setState(() {
-
-              });},
+              onChanged: (_) {
+                setState(() {});
+              },
               decoration: const InputDecoration(
-                prefixIcon: const Icon(Icons.search),
+                  prefixIcon: const Icon(Icons.search),
                   label: Text("Search Pokemon"),
                   floatingLabelBehavior: FloatingLabelBehavior.auto,
                   border: OutlineInputBorder(
@@ -67,23 +75,26 @@ class _HomepageState extends State<Homepage> {
                     if (state is PokemonListLoaded) {
                       final double viewportWidth =
                           MediaQuery.of(context).size.width;
-                      List<Result> toRender=_pokeController.text.isNotEmpty?List.from(state.pokemonListModel.results.expand((element){
-                        if(element.name.contains(_pokeController.text)){
-                          return <Result>[element];
-                        }
-                        else {
-                          return <Result>[];
-                        }
-                      })):state.pokemonListModel.results;
+                      List<Result> toRender = _pokeController.text.isNotEmpty
+                          ? List.from(
+                              state.pokemonListModel.results.expand((element) {
+                              if (element.name.contains(_pokeController.text)) {
+                                return <Result>[element];
+                              } else {
+                                return <Result>[];
+                              }
+                            }))
+                          : state.pokemonListModel.results;
                       return ListView.builder(
                           // Create grid with 2 columns (scrollDirection horizontal produces 2 rows)
                           // crossAxisCount: 1,
                           // Generate 100 widgets that display their index in the List.
                           itemCount: toRender.length,
                           itemBuilder: (_, i) {
-                            Result element=toRender[i];
-                            final rgx=RegExp(r"/([\d]+)[/]{0,1}$");
-                            var id=rgx.firstMatch(element.url)?.group(1)??"1";
+                            Result element = toRender[i];
+                            final rgx = RegExp(r"/([\d]+)[/]{0,1}$");
+                            var id =
+                                rgx.firstMatch(element.url)?.group(1) ?? "1";
                             return Card(
                               child: Row(
                                 children: [
@@ -104,14 +115,34 @@ class _HomepageState extends State<Homepage> {
                                         checkColor: Colors.white,
                                         // fillColor: MaterialStateProperty.resolveWith(getColor),
                                         value: selected.contains(element.name),
-                                        onChanged: (selected.contains(element.name) ||
+                                        onChanged: (selected
+                                                    .contains(element.name) ||
                                                 canSelectMore)
                                             ? (bool? value) {
                                                 setState(() {
                                                   if (value != null && value) {
                                                     selected.add(element.name);
+                                                    pokemons.add({
+                                                      'name': state
+                                                          .pokemonListModel
+                                                          .results[i]
+                                                          .name
+                                                          .toString(),
+                                                      'image':
+                                                          "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${id}.gif"
+                                                    });
                                                   } else {
-                                                    selected.remove(element.name);
+                                                    selected
+                                                        .remove(element.name);
+                                                    pokemons.remove({
+                                                      'name': state
+                                                          .pokemonListModel
+                                                          .results[i]
+                                                          .name
+                                                          .toString(),
+                                                      'image':
+                                                          "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${id}.gif"
+                                                    });
                                                   }
                                                 });
                                               }
@@ -137,8 +168,16 @@ class _HomepageState extends State<Homepage> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => Resultpage(),
+                builder: (context) => Resultpage(selected: pokemons),
               ));
+
+          //HARD RESET ARRAY LIST USING TIMEOUT
+          Future.delayed(const Duration(seconds:1), () {
+            setState(() {
+              selected.clear();
+              pokemons.clear();
+            });
+          });
         },
         child: const Text(
           "VERSUS",
