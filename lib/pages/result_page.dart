@@ -2,7 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_pokemon_app/pages/pokemon_details.dart';
 
 class Resultpage extends StatefulWidget {
-  const Resultpage({Key? key}) : super(key: key);
+   final List<Map<String,String>> selected;
+  const Resultpage({Key? key, required this.selected}) : super(key: key);
+  //widget.selected[0]
+  //widget.selected[1]
+   //selected.clear()
+
+   void didPop() {
+       selected.clear();
+   }
+
 
   @override
   State<Resultpage> createState() => _ResultpageState();
@@ -30,8 +39,10 @@ class _ResultpageState extends State<Resultpage> {
             color: Colors.pink,
             width: 410,
             height: 200,
-            child: Center(
-              child: Image.network(''),
+            child: Column(
+              children: [
+                Image.network('${widget.selected[0]['image']}'),
+                Text('${widget.selected[0]['name']}')],
             ),
           ),
 
@@ -48,8 +59,9 @@ class _ResultpageState extends State<Resultpage> {
               color: Colors.blue,
               width: 410,
               height: 200,
-              child: Center(
-                  child: Image.network(''),
+              child: Column(
+                  children: [ Image.network('${widget.selected[1]['image']}'),
+                Text('${widget.selected[1]['name']}')],
               ),
           )
           ]
