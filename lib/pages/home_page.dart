@@ -24,6 +24,7 @@ class _HomepageState extends State<Homepage> {
   List<Map<String, String>> pokemons = [];
 
   late TextEditingController _pokeController;
+  bool _IsCheckEmpty = false;
 
   bool get canSelectMore => selected.length < 2;
 
@@ -164,7 +165,7 @@ class _HomepageState extends State<Homepage> {
         ),
       ),
       floatingActionButton: ElevatedButton(
-        onPressed: () {
+        onPressed:canSelectMore?null:(){
           Navigator.push(
               context,
               MaterialPageRoute(
@@ -174,14 +175,17 @@ class _HomepageState extends State<Homepage> {
           //HARD RESET ARRAY LIST USING TIMEOUT
           Future.delayed(const Duration(seconds:1), () {
             setState(() {
-              selected.clear();
-              pokemons.clear();
+              selected=[];
+              pokemons=[];
             });
           });
         },
+        style: ButtonStyle(
+          backgroundColor:MaterialStateProperty.all(Colors.red),
+        ),
         child: const Text(
           "VERSUS",
-          style: TextStyle(fontSize: 20),
+          style: TextStyle(fontSize: 20,color:Colors.white,fontWeight: FontWeight.bold),
         ),
       ),
     );

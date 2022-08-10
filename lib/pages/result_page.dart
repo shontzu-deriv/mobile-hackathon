@@ -39,10 +39,20 @@ class _ResultpageState extends State<Resultpage> {
             color: Colors.pink,
             width: 410,
             height: 200,
-            child: Column(
-              children: [
-                Image.network('${widget.selected[0]['image']}'),
-                Text('${widget.selected[0]['name']}')],
+            child: Center(
+              child: Column(
+                children:<Widget> [
+                  FittedBox(
+                    child:Image.network('${widget.selected[0]['image']}',
+                      fit: BoxFit.fill,
+                      height: 150,
+                      width: 150,
+                  ),
+                  ),
+
+
+                  Text('${widget.selected[0]['name']}')],
+              ),
             ),
           ),
 
@@ -59,9 +69,17 @@ class _ResultpageState extends State<Resultpage> {
               color: Colors.blue,
               width: 410,
               height: 200,
-              child: Column(
-                  children: [ Image.network('${widget.selected[1]['image']}'),
-                Text('${widget.selected[1]['name']}')],
+              child: Center(
+                child: Column(
+                    children:<Widget>[ FittedBox(
+                      child:Image.network('${widget.selected[1]['image']}',
+                        fit: BoxFit.fill,
+                        height: 150,
+                        width: 150,
+                      ),
+                    ),
+                  Text('${widget.selected[1]['name']}')],
+                ),
               ),
           )
           ]
