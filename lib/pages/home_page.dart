@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_pokemon_app/pages/result_page.dart';
@@ -18,7 +17,10 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  List<int> selected = List.empty(growable: true);
+
   late TextEditingController _pokeController;
+  bool get canSelectMore => selected.length < 2;
 
   @override
   void initState() {
@@ -54,27 +56,53 @@ class _HomepageState extends State<Homepage> {
                       return const CircularProgressIndicator();
 
                     if (state is PokemonListLoaded) {
-                      return ListView(
-                        // Create grid with 2 columns (scrollDirection horizontal produces 2 rows)
-                        // crossAxisCount: 1,
-                        // Generate 100 widgets that display their index in the List.
-                        children: List.generate(
-                            state.pokemonListModel.results.length, (i) {
-                          return Card(
-                            child: Column(
-                              // mainAxisSize: MainAxisSize.min,
+                      final double viewportWidth =
+                          MediaQuery.of(context).size.width;
+                      return ListView.builder(
+                          // Create grid with 2 columns (scrollDirection horizontal produces 2 rows)
+                          // crossAxisCount: 1,
+                          // Generate 100 widgets that display their index in the List.
+                          itemCount: state.pokemonListModel.results.length,
+                          itemBuilder: (_, i) {
+                            return Card(
+                              child: Row(
+                                children: [
+                                  ConstrainedBox(
+                                      constraints: BoxConstraints(
+                                          maxWidth: viewportWidth * 0.70),
+                                      child: ListTile(
+                                        leading: Image.network(
+                                            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${i + 1}.gif"),
+                                        title: Text(state
+                                            .pokemonListModel.results[i].name),
 
-                              children: <Widget>[
-                                const ListTile(
-                                  leading: Icon(Icons.album, size: 45),
-                                  title: Text('Sonu Nigam'),
-                                  subtitle: Text('Best of Sonu Nigam Song'),
-                                ),
-                              ],
-                            ),
-                          );
-                        }),
-                      );
+                                        // subtitle:
+                                      )),
+                                  ConstrainedBox(
+                                      constraints: BoxConstraints(
+                                          maxWidth: viewportWidth * 0.10),
+                                      child: Checkbox(
+                                        checkColor: Colors.white,
+                                        // fillColor: MaterialStateProperty.resolveWith(getColor),
+                                        value: selected.contains(i),
+                                        onChanged: (selected.contains(i) ||
+                                                canSelectMore)
+                                            ? (bool? value) {
+                                                setState(() {
+                                                  if (value != null && value) {
+                                                    selected.add(i);
+                                                  } else {
+                                                    selected.remove(i);
+                                                  }
+                                                });
+                                              }
+                                            : null,
+                                      ))
+                                ],
+                              ),
+                            );
+                          });
+                      // );
                       // ); // Text("${state.pokemonListModel.results[4].name}")
                     }
 
