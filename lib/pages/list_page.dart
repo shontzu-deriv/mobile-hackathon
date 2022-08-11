@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_pokemon_app/pages/result_page.dart';
+import 'package:flutter_pokemon_app/pages/versus_page.dart';
 import '../models/pokemon_list_model.dart';
 import '../states/pokemon_cubit.dart';
 import '../states/pokemon_list_cubit.dart';
 import '../states/pokemon_list_states.dart';
-import '../pages/pokemon_details.dart';
+import '../pages/battle_page.dart';
 import '../states/pokemon_states.dart';
 import '../widgets/pokemon_information.dart';
-import 'home_page.dart';
+import 'list_page.dart';
 
 void searchPokemon(String query) {}
 
@@ -165,27 +165,30 @@ class _HomepageState extends State<Homepage> {
         ),
       ),
       floatingActionButton: ElevatedButton(
-        onPressed:canSelectMore?null:(){
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Resultpage(selected: pokemons),
-              ));
+        onPressed: canSelectMore
+            ? null
+            : () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Resultpage(selected: pokemons),
+                    ));
 
-          //HARD RESET ARRAY LIST USING TIMEOUT
-          Future.delayed(const Duration(seconds:1), () {
-            setState(() {
-              selected=[];
-              pokemons=[];
-            });
-          });
-        },
+                //HARD RESET ARRAY LIST USING TIMEOUT
+                Future.delayed(const Duration(seconds: 1), () {
+                  setState(() {
+                    selected = [];
+                    pokemons = [];
+                  });
+                });
+              },
         style: ButtonStyle(
-          backgroundColor:MaterialStateProperty.all(Colors.red),
+          backgroundColor: MaterialStateProperty.all(Colors.red),
         ),
         child: const Text(
           "VERSUS",
-          style: TextStyle(fontSize: 20,color:Colors.white,fontWeight: FontWeight.bold),
+          style: TextStyle(
+              fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
         ),
       ),
     );
