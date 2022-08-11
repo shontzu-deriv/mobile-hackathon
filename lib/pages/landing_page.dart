@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'animation.dart';
 import 'poke_deck_page.dart';
 import 'poke_battle.dart';
 
@@ -22,15 +23,18 @@ class LandingPage extends StatelessWidget {
       child: Center(
 
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Image(
-              alignment: Alignment.topCenter,
-              height: 375,
-              width: 375,
-              image: AssetImage('lib/pokemon.png'),
-            ),
-            SizedBox(height: 200),
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [ Anime(),
+
+        //
+        // const Image(
+        // alignment: Alignment.topCenter,
+        //   height: 375,
+        //   width: 375,
+        //   image: AssetImage('lib/pokemon.png'),
+        // ),
+
+            SizedBox(height: 100),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -54,10 +58,11 @@ class LandingPage extends StatelessWidget {
                             side: BorderSide(color: Colors.black)
                         )
                     ),
-                    
-                    shadowColor: MaterialStateProperty.all(Colors.black)
+
+                    shadowColor: MaterialStateProperty.all(Colors.red),
+                      elevation: MaterialStateProperty.all(12),
                   ),
-                  
+
                 ),
                 ElevatedButton(
                   onPressed: () {
@@ -79,11 +84,14 @@ class LandingPage extends StatelessWidget {
                             side: BorderSide(color: Colors.black)
                         )
                   ),
+                    shadowColor: MaterialStateProperty.all(Colors.red),
+                    elevation: MaterialStateProperty.all(12),
 
                 ),
                 ),
               ],
             ),
+            SizedBox(height: 50),
 
           ],
         ),
@@ -91,3 +99,4 @@ class LandingPage extends StatelessWidget {
     ));
   }
 }
+
