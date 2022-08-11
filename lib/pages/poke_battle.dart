@@ -20,7 +20,7 @@ class _PokeBattlePageState extends State<PokeBattlePage> {
   List<Map<String, String>> pokemons = [];
 
   late TextEditingController _pokeController;
-  bool _IsCheckEmpty = false;
+
 
   bool get canSelectMore => selected.length < 2;
 
