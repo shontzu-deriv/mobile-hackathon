@@ -17,7 +17,7 @@ void showPokemonDialog(BuildContext ctx, final String url) {
     context: ctx,
     builder: (context) => AlertDialog(
       content: SizedBox(
-        height: 150,
+        height: 300,
         child: StatefulBuilder(
           builder: (context, setState) {
             //fire the async stuff here
@@ -52,9 +52,30 @@ void showPokemonDialog(BuildContext ctx, final String url) {
               case _LoaderStates.loading:
                 return const Center(child: CircularProgressIndicator());
               case _LoaderStates.loaded:
-                return Text(data!.name);
+                return Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text((data!.name).toUpperCase()),
+                    const Text("ABILITIES",
+                        // textAlign: TextAlign.start,
+                        style: TextStyle(fontWeight: FontWeight.bold)),
+                    Container(
+                      height: 200,
+                      width: 300.0,
+                      child: ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: data!.abilities.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return ListTile(
+                              title: Text((data!.abilities[index].ability.name)
+                                  .toString()),
+                            );
+                          }),
+                    ),
+                  ],
+                );
               case _LoaderStates.failed:
-                return Text("something messed up");
+                return const Text("something messed up");
             }
             return Container();
           },
