@@ -21,7 +21,6 @@ class _PokeBattlePageState extends State<PokeBattlePage> {
 
   late TextEditingController _pokeController;
 
-
   bool get canSelectMore => selected.length < 2;
 
   @override
@@ -190,8 +189,16 @@ class _PokeBattlePageState extends State<PokeBattlePage> {
                   });
                 });
               },
+        // style: ButtonStyle(
+        //   backgroundColor: MaterialStateProperty.all(Colors.red),
+        // ),
         style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(Colors.red),
+          backgroundColor: MaterialStateProperty.resolveWith<Color>(
+            (Set<MaterialState> states) {
+              if (canSelectMore) return Colors.grey;
+              return Colors.green;
+            },
+          ),
         ),
         child: const Text(
           "VERSUS",
