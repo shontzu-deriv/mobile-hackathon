@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'almanac_page.dart';
-import 'list_page.dart';
+import 'poke_deck_page.dart';
+import 'poke_battle.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({Key? key}) : super(key: key);
@@ -15,11 +15,11 @@ class LandingPage extends StatelessWidget {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const AlmanacPage(),
+                  builder: (context) => const PokeDeckPage(),
                 ));
           },
           child: const Text(
-            "ALMANAC",
+            "POKE DECK",
             style: TextStyle(fontSize: 20),
           ),
         ),
@@ -28,11 +28,11 @@ class LandingPage extends StatelessWidget {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const ListPage(),
+                  builder: (context) => const PokeBattlePage(),
                 ));
           },
           child: const Text(
-            "BATTLE",
+            "POKE BATTLE",
             style: TextStyle(fontSize: 20),
           ),
         ),

@@ -7,14 +7,14 @@ import '../states/pokemon_list_states.dart';
 
 void searchPokemon(String query) {}
 
-class ListPage extends StatefulWidget {
-  const ListPage({Key? key}) : super(key: key);
+class PokeBattlePage extends StatefulWidget {
+  const PokeBattlePage({Key? key}) : super(key: key);
 
   @override
-  State<ListPage> createState() => _ListPageState();
+  State<PokeBattlePage> createState() => _PokeBattlePageState();
 }
 
-class _ListPageState extends State<ListPage> {
+class _PokeBattlePageState extends State<PokeBattlePage> {
   List<String> selected = List.empty(growable: true);
   List<Map<String, String>> pokemons = [];
 
@@ -43,7 +43,10 @@ class _ListPageState extends State<ListPage> {
       ..fetchAllPokemonList();
 
     return Scaffold(
-      appBar: AppBar(title: const Center(child: Text("Pokemon App"))),
+      appBar: AppBar(
+        title: const Text("CHOOSE TO BATTLE"),
+        centerTitle: true,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(30),
         child: Column(
@@ -166,7 +169,7 @@ class _ListPageState extends State<ListPage> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Resultpage(selected: pokemons),
+                      builder: (context) => VersusPage(selected: pokemons),
                     ));
 
                 //HARD RESET ARRAY LIST USING TIMEOUT
@@ -186,6 +189,7 @@ class _ListPageState extends State<ListPage> {
               fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
         ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

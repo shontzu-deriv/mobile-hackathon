@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../states/pokemon_list_cubit.dart';
 import '../states/pokemon_list_states.dart';
-import 'list_page.dart';
+import 'poke_battle.dart';
 
 void searchPokemon(String query) {}
 
-class AlmanacPage extends StatefulWidget {
-  const AlmanacPage({Key? key}) : super(key: key);
+class PokeDeckPage extends StatefulWidget {
+  const PokeDeckPage({Key? key}) : super(key: key);
 
   @override
-  State<AlmanacPage> createState() => _AlmanacPageState();
+  State<PokeDeckPage> createState() => _PokeDeckPageState();
 }
 
-class _AlmanacPageState extends State<AlmanacPage> {
+class _PokeDeckPageState extends State<PokeDeckPage> {
   List<String> selected = List.empty(growable: true);
   List<Map<String, String>> pokemons = [];
 
@@ -40,7 +40,8 @@ class _AlmanacPageState extends State<AlmanacPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Pokemon App"),
+        title: Text("POKE DECK"),
+        centerTitle: true,
       ),
       body: Column(
         children: [
@@ -137,7 +138,7 @@ class _AlmanacPageState extends State<AlmanacPage> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const ListPage(),
+                builder: (context) => const PokeBattlePage(),
               ));
         },
         child: const Text(

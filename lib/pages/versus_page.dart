@@ -1,22 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_pokemon_app/pages/battle_page.dart';
 
-class Resultpage extends StatefulWidget {
+class VersusPage extends StatefulWidget {
   final List<Map<String, String>> selected;
-  const Resultpage({Key? key, required this.selected}) : super(key: key);
-  //widget.selected[0]
-  //widget.selected[1]
-  //selected.clear()
+  const VersusPage({Key? key, required this.selected}) : super(key: key);
 
   void didPop() {
     selected.clear();
   }
 
   @override
-  State<Resultpage> createState() => _ResultpageState();
+  State<VersusPage> createState() => _VersusPageState();
 }
 
-class _ResultpageState extends State<Resultpage> {
+class _VersusPageState extends State<VersusPage> {
   late TextEditingController _pokeController;
 
   @override
@@ -28,7 +24,10 @@ class _ResultpageState extends State<Resultpage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Center(child: Text("Poke Battle"))),
+        appBar: AppBar(
+          title: const Text("BATTLE"),
+          centerTitle: true,
+        ),
         body: Center(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
             Container(
