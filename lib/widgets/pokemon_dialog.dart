@@ -62,6 +62,7 @@ void showPokemonDialog(BuildContext ctx, final String url) {
                     ),
                     const Divider(color: Colors.black),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Image.network((data!.sprites.frontDefault).toString()),
                         Column(
@@ -69,7 +70,8 @@ void showPokemonDialog(BuildContext ctx, final String url) {
                             const Text("ABILITIES",
                                 style: TextStyle(fontWeight: FontWeight.bold)),
                             Text((data!.abilities[0].ability.name).toString()),
-                            Text((data!.abilities[1].ability.name).toString()),
+                            Text((data?.abilities[0].ability.name) ??
+                                (data!.abilities[0].ability.name).toString()),
                           ],
                         ),
                       ],

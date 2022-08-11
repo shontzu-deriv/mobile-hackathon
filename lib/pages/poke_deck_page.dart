@@ -39,6 +39,18 @@ class _PokeDeckPageState extends State<PokeDeckPage> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    _pokeController.dispose();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    BlocProvider.of<PokemonListCubit>(context).fetchAllPokemonList();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -87,12 +99,10 @@ class _PokeDeckPageState extends State<PokeDeckPage> {
                         // Create grid with 2 columns (scrollDirection horizontal produces 2 rows)
                         crossAxisCount: 3,
                         // Generate 100 widgets that display their index in the List.
-                        children: List.generate(
-                            state.pokemonListModel.results.length, (i) {
+                        children: List.generate(toRender.length, (i) {
                           return GestureDetector(
                             onTap: () {
-                              showPokemonDialog(context,
-                                  state.pokemonListModel.results[i].url);
+                              showPokemonDialog(context, toRender[i].url);
                             },
                             child: Card(
                               // color: Colors.orange[200],
@@ -113,8 +123,7 @@ class _PokeDeckPageState extends State<PokeDeckPage> {
                                         width: 100,
                                       ),
                                     ),
-                                    Text(
-                                        "${state.pokemonListModel.results[i].name}"),
+                                    Text(toRender[i].name),
                                   ],
                                 ),
                               ),

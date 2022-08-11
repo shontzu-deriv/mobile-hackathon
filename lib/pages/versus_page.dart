@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_pokemon_app/models/pokemon_model.dart';
+
+import '../states/pokemon_cubit.dart';
 
 class VersusPage extends StatefulWidget {
   final List<Map<String, String>> selected;
@@ -49,6 +53,9 @@ class _VersusPageState extends State<VersusPage>
 
   @override
   Widget build(BuildContext context) {
+    PokemonCubit cubit = BlocProvider.of<PokemonCubit>(context)
+      ..fetchPokemons('1');
+
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.black,
@@ -63,11 +70,11 @@ class _VersusPageState extends State<VersusPage>
             Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: NetworkImage('https://img.freepik.com/free-vector/flat-comic-style-background_23-2148818641.jpg?w=2000'),
+                  image: NetworkImage(
+                      'https://img.freepik.com/free-vector/flat-comic-style-background_23-2148818641.jpg?w=2000'),
                   fit: BoxFit.cover,
                 ),
               ),
-
               child: Column(
                 children: <Widget>[
                   Transform.translate(
@@ -84,7 +91,7 @@ class _VersusPageState extends State<VersusPage>
                     ),
                   ),
                   Align(
-                      alignment: Alignment.topLeft,
+                    alignment: Alignment.topLeft,
                     child: DefaultTextStyle(
                       style: const TextStyle(
                         fontSize: 30.0,
@@ -97,7 +104,8 @@ class _VersusPageState extends State<VersusPage>
                               ' ${widget.selected[0]['name']}'),
                         ],
                       ),
-                    ),),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -113,7 +121,8 @@ class _VersusPageState extends State<VersusPage>
             Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: NetworkImage('https://img.freepik.com/premium-vector/blue-comic-retro-burst-background_92086-478.jpg?w=2000'),
+                  image: NetworkImage(
+                      'https://img.freepik.com/premium-vector/blue-comic-retro-burst-background_92086-478.jpg?w=2000'),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -130,8 +139,7 @@ class _VersusPageState extends State<VersusPage>
                       child: AnimatedTextKit(
                         animatedTexts: [
                           TypewriterAnimatedText(
-                              '${widget.selected[1]['name']}'
-                          ),
+                              '${widget.selected[1]['name']}'),
                         ],
                       ),
                     ),
@@ -149,7 +157,6 @@ class _VersusPageState extends State<VersusPage>
                       ),
                     ),
                   ),
-
                 ]),
               ),
             ),
