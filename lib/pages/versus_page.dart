@@ -12,17 +12,34 @@ class VersusPage extends StatefulWidget {
   State<VersusPage> createState() => _VersusPageState();
 }
 
-class _VersusPageState extends State<VersusPage> {
-  late TextEditingController _pokeController;
-
+class _VersusPageState extends State<VersusPage> with SingleTickerProviderStateMixin {
+  // late TextEditingController _pokeController;
+  late AnimationController _animationController;
   @override
   void initState() {
     super.initState();
-    _pokeController = TextEditingController();
+    // _pokeController = TextEditingController();
+    _animationController=AnimationController(vsync: this,duration:const Duration(seconds:1,),lowerBound: 0,upperBound: 1);
+    _animationController.addListener(() {setState(() {
+
+    });});
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _animationController.dispose();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _animationController.forward();
   }
 
   @override
   Widget build(BuildContext context) {
+    Size size=MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
           title: const Text("BATTLE"),
@@ -34,22 +51,31 @@ class _VersusPageState extends State<VersusPage> {
               color: Colors.pink,
               width: 410,
               height: 200,
-              child: Center(
                 child: Column(
                   children: <Widget>[
-                    FittedBox(
-                      child: Image.network(
-                        '${widget.selected[0]['image']}',
-                        fit: BoxFit.fill,
-                        height: 150,
-                        width: 150,
+                    Transform.translate(
+                      offset:Offset(-(size.width*0.66*(1-_animationController.value)),0),
+                      child: FittedBox(
+                        child: Image.network(
+                          '${widget.selected[0]['image']}',
+                          fit: BoxFit.fill,
+                          height: 150,
+                          width: 150,
+                        ),
                       ),
                     ),
-                    Text('${widget.selected[0]['name']}')
+      Align(
+        alignment: Alignment.topLeft,
+                    child:Text('${widget.selected[0]['name']}',
+                      style: TextStyle(
+                          fontSize: 25,
+
+                      ),)
+      )
                   ],
                 ),
               ),
-            ),
+
             Container(
               color: Colors.white,
               width: 410,
@@ -66,15 +92,24 @@ class _VersusPageState extends State<VersusPage> {
               child: Center(
                 child: Column(
                   children: <Widget>[
-                    FittedBox(
+                Transform.translate(
+                offset:Offset((size.width*0.66*(1-_animationController.value)),0),
+                    child:FittedBox(
                       child: Image.network(
                         '${widget.selected[1]['image']}',
                         fit: BoxFit.fill,
                         height: 150,
                         width: 150,
                       ),
-                    ),
-                    Text('${widget.selected[1]['name']}')
+                    ),),
+                    Align(
+                        alignment: Alignment.topRight,
+                        child:Text('${widget.selected[1]['name']}',
+                          style: TextStyle(
+                            fontSize: 25,
+
+                          ),)
+                    )
                   ],
                 ),
               ),
@@ -83,3 +118,142 @@ class _VersusPageState extends State<VersusPage> {
         ));
   }
 }
+
+// class VersusPage extends StatefulWidget {
+//   const VersusPage({Key? key}) : super(key: key);
+//
+//   @override
+//   State<VersusPage> createState() => _VersusPageState();
+// }
+//
+// class _VersusPageState extends State<VersusPage> {
+//   bool selected = false;
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return SizedBox(
+//       width: 200,
+//       height: 350,
+//       child: Stack(
+//         children: <Widget>[
+//           AnimatedPositioned(
+//             width: selected ? 500.0 : 5.0,
+//             height: selected ? 200.0 : 200.0,
+//             duration: const Duration(seconds: 2),
+//             curve: Curves.fastOutSlowIn,
+//             child: GestureDetector(
+//               onTap: () {
+//     setState(() {
+//             selected =! selected;
+//            });
+//               },
+//               child: Container(
+//                 decoration: BoxDecoration(
+//                   color: Colors.pink,
+//                 ),
+//               ),
+//             ),
+//           ),
+//           AnimatedPositioned(
+//             width: selected ? 500.0 : 5.0,
+//             height: selected ? 200.0 : 200.0,
+//             duration: const Duration(seconds: 2),
+//             curve: Curves.fastOutSlowIn,
+//             child: GestureDetector(
+//               onTap: () {
+//                 setState(() {
+//                   selected =! selected;
+//                 });
+//               },
+//               child: Container(
+//                 decoration: BoxDecoration(
+//                   color: Colors.white,
+//                 ),
+//               ),
+//             ),
+//           ),
+//           AnimatedPositioned(
+//             width: selected ? 500.0 : 5.0,
+//             height: selected ? 200.0 : 200.0,
+//             duration: const Duration(seconds: 2),
+//             curve: Curves.fastOutSlowIn,
+//             child: GestureDetector(
+//               onTap: () {
+//                 setState(() {
+//                   selected =! selected;
+//                 });
+//               },
+//               child: Container(
+//                 decoration: BoxDecoration(
+//                   color: Colors.blue,
+//                 ),
+//               ),
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//     return SizedBox(
+//       width: 200,
+//       height: 350,
+//       child: Stack(
+//         children: <Widget>[
+//           AnimatedPositioned(
+//             width: selected ? 500.0 : 5.0,
+//             height: selected ? 200.0 : 200.0,
+//             duration: const Duration(seconds: 2),
+//             curve: Curves.fastOutSlowIn,
+//             child: GestureDetector(
+//               onTap: () {
+//                 setState(() {
+//                   selected =! selected;
+//                 });
+//               },
+//               child: Container(
+//                 decoration: BoxDecoration(
+//                   color: Colors.pink,
+//                 ),
+//               ),
+//             ),
+//           ),
+//           AnimatedPositioned(
+//             width: selected ? 500.0 : 5.0,
+//             height: selected ? 200.0 : 200.0,
+//             duration: const Duration(seconds: 2),
+//             curve: Curves.fastOutSlowIn,
+//             child: GestureDetector(
+//               onTap: () {
+//                 setState(() {
+//                   selected =! selected;
+//                 });
+//               },
+//               child: Container(
+//                 decoration: BoxDecoration(
+//                   color: Colors.white,
+//                 ),
+//               ),
+//             ),
+//           ),
+//           AnimatedPositioned(
+//             width: selected ? 500.0 : 5.0,
+//             height: selected ? 200.0 : 200.0,
+//             duration: const Duration(seconds: 2),
+//             curve: Curves.fastOutSlowIn,
+//             child: GestureDetector(
+//               onTap: () {
+//                 setState(() {
+//                   selected =! selected;
+//                 });
+//               },
+//               child: Container(
+//                 decoration: BoxDecoration(
+//                   color: Colors.blue,
+//                 ),
+//               ),
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
