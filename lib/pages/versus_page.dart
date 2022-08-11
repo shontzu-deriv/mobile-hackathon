@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 class VersusPage extends StatefulWidget {
   final List<Map<String, String>> selected;
+
   const VersusPage({Key? key, required this.selected}) : super(key: key);
 
   void didPop() {
@@ -12,17 +14,25 @@ class VersusPage extends StatefulWidget {
   State<VersusPage> createState() => _VersusPageState();
 }
 
-class _VersusPageState extends State<VersusPage> with SingleTickerProviderStateMixin {
+class _VersusPageState extends State<VersusPage>
+    with SingleTickerProviderStateMixin {
   // late TextEditingController _pokeController;
   late AnimationController _animationController;
+
   @override
   void initState() {
     super.initState();
     // _pokeController = TextEditingController();
-    _animationController=AnimationController(vsync: this,duration:const Duration(seconds:1,),lowerBound: 0,upperBound: 1);
-    _animationController.addListener(() {setState(() {
-
-    });});
+    _animationController = AnimationController(
+        vsync: this,
+        duration: const Duration(
+          seconds: 1,
+        ),
+        lowerBound: 0,
+        upperBound: 1);
+    _animationController.addListener(() {
+      setState(() {});
+    });
   }
 
   @override
@@ -39,43 +49,52 @@ class _VersusPageState extends State<VersusPage> with SingleTickerProviderStateM
 
   @override
   Widget build(BuildContext context) {
-    Size size=MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
-        appBar: AppBar(
-          title: const Text("BATTLE"),
-          centerTitle: true,
-        ),
-        body: Center(
-          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+      appBar: AppBar(
+        title: const Text("BATTLE"),
+        centerTitle: true,
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
             Container(
               color: Colors.pink,
               width: 410,
               height: 200,
-                child: Column(
-                  children: <Widget>[
-                    Transform.translate(
-                      offset:Offset(-(size.width*0.66*(1-_animationController.value)),0),
-                      child: FittedBox(
-                        child: Image.network(
-                          '${widget.selected[0]['image']}',
-                          fit: BoxFit.fill,
-                          height: 150,
-                          width: 150,
-                        ),
+              child: Column(
+                children: <Widget>[
+                  Transform.translate(
+                    offset: Offset(
+                        -(size.width * 0.66 * (1 - _animationController.value)),
+                        0),
+                    child: FittedBox(
+                      child: Image.network(
+                        '${widget.selected[0]['image']}',
+                        fit: BoxFit.fill,
+                        height: 150,
+                        width: 150,
                       ),
                     ),
-      Align(
-        alignment: Alignment.topLeft,
-                    child:Text('${widget.selected[0]['name']}',
-                      style: TextStyle(
-                          fontSize: 25,
-
-                      ),)
-      )
-                  ],
-                ),
+                  ),
+                  Align(
+                      alignment: Alignment.topLeft,
+                    child: DefaultTextStyle(
+                      style: const TextStyle(
+                        fontSize: 30.0,
+                        fontFamily: 'Agne',
+                      ),
+                      child: AnimatedTextKit(
+                        animatedTexts: [
+                          TypewriterAnimatedText(
+                              '${widget.selected[0]['name']}'),
+                        ],
+                      ),
+                    ),)
+                ],
               ),
-
+            ),
             Container(
               color: Colors.white,
               width: 410,
@@ -90,32 +109,43 @@ class _VersusPageState extends State<VersusPage> with SingleTickerProviderStateM
               width: 410,
               height: 200,
               child: Center(
-                child: Column(
-                  children: <Widget>[
-                Transform.translate(
-                offset:Offset((size.width*0.66*(1-_animationController.value)),0),
-                    child:FittedBox(
+                child: Column(children: <Widget>[
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: DefaultTextStyle(
+                      style: const TextStyle(
+                        fontSize: 30.0,
+                        fontFamily: 'Agne',
+                      ),
+                      child: AnimatedTextKit(
+                        animatedTexts: [
+                          TypewriterAnimatedText(
+                              '${widget.selected[1]['name']}'),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Transform.translate(
+                    offset: Offset(
+                        (size.width * 0.66 * (1 - _animationController.value)),
+                        0),
+                    child: FittedBox(
                       child: Image.network(
                         '${widget.selected[1]['image']}',
                         fit: BoxFit.fill,
                         height: 150,
                         width: 150,
                       ),
-                    ),),
-                    Align(
-                        alignment: Alignment.topRight,
-                        child:Text('${widget.selected[1]['name']}',
-                          style: TextStyle(
-                            fontSize: 25,
+                    ),
+                  ),
 
-                          ),)
-                    )
-                  ],
-                ),
+                ]),
               ),
-            )
-          ]),
-        ));
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
 
