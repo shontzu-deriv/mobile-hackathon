@@ -2,13 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_pokemon_app/pages/versus_page.dart';
 import '../models/pokemon_list_model.dart';
-import '../states/pokemon_cubit.dart';
 import '../states/pokemon_list_cubit.dart';
 import '../states/pokemon_list_states.dart';
-import '../pages/battle_page.dart';
-import '../states/pokemon_states.dart';
-import '../widgets/pokemon_information.dart';
-import 'list_page.dart';
 
 void searchPokemon(String query) {}
 
