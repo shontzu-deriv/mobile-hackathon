@@ -189,9 +189,6 @@ class _PokeBattlePageState extends State<PokeBattlePage> {
                   });
                 });
               },
-        // style: ButtonStyle(
-        //   backgroundColor: MaterialStateProperty.all(Colors.red),
-        // ),
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.resolveWith<Color>(
             (Set<MaterialState> states) {

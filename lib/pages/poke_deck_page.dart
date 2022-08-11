@@ -39,6 +39,12 @@ class _PokeDeckPageState extends State<PokeDeckPage> {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    BlocProvider.of<PokemonListCubit>(context).fetchAllPokemonList();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(

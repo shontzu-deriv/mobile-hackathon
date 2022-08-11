@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_pokemon_app/models/pokemon_model.dart';
+
+import '../states/pokemon_cubit.dart';
 
 class VersusPage extends StatefulWidget {
   final List<Map<String, String>> selected;
@@ -49,6 +53,9 @@ class _VersusPageState extends State<VersusPage>
 
   @override
   Widget build(BuildContext context) {
+    PokemonCubit cubit = BlocProvider.of<PokemonCubit>(context)
+      ..fetchPokemons('1');
+
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
@@ -79,24 +86,30 @@ class _VersusPageState extends State<VersusPage>
                     ),
                   ),
                   Align(
-                      alignment: Alignment.topLeft,
+                    alignment: Alignment.topLeft,
                     child: DefaultTextStyle(
                       style: const TextStyle(
                         fontSize: 30.0,
                         fontFamily: 'Agne',
                       ),
-                      child: AnimatedTextKit(
-                        animatedTexts: [
-                          TypewriterAnimatedText(
-                              '${widget.selected[0]['name']}'),
+                      child: Column(
+                        children: [
+                          AnimatedTextKit(
+                            animatedTexts: [
+                              TypewriterAnimatedText(
+                                  '${widget.selected[0]['name']}'),
+                            ],
+                          ),
+                          // Text(),
                         ],
                       ),
-                    ),)
+                    ),
+                  )
                 ],
               ),
             ),
             Container(
-              color: Colors.white,
+              color: Colors.black,
               width: 410,
               height: 200,
               child: Center(
@@ -138,7 +151,6 @@ class _VersusPageState extends State<VersusPage>
                       ),
                     ),
                   ),
-
                 ]),
               ),
             ),
