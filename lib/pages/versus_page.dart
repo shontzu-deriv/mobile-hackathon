@@ -58,18 +58,23 @@ class _VersusPageState extends State<VersusPage>
 
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
         title: const Text("BATTLE"),
         centerTitle: true,
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              color: Colors.pink,
-              width: 410,
-              height: 200,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(
+                      'https://img.freepik.com/free-vector/flat-comic-style-background_23-2148818641.jpg?w=2000'),
+                  fit: BoxFit.cover,
+                ),
+              ),
               child: Column(
                 children: <Widget>[
                   Transform.translate(
@@ -91,36 +96,36 @@ class _VersusPageState extends State<VersusPage>
                       style: const TextStyle(
                         fontSize: 30.0,
                         fontFamily: 'Agne',
+                        color: Colors.white,
                       ),
-                      child: Column(
-                        children: [
-                          AnimatedTextKit(
-                            animatedTexts: [
-                              TypewriterAnimatedText(
-                                  '${widget.selected[0]['name']}'),
-                            ],
-                          ),
-                          // Text(),
+                      child: AnimatedTextKit(
+                        animatedTexts: [
+                          TypewriterAnimatedText(
+                              ' ${widget.selected[0]['name']}'),
                         ],
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
             Container(
               color: Colors.black,
               width: 410,
-              height: 200,
+              height: 180,
               child: Center(
                 child: Image.network(
                     'https://media.baamboozle.com/uploads/images/417119/1628139419_225816_gif-url.gif'),
               ),
             ),
             Container(
-              color: Colors.blue,
-              width: 410,
-              height: 200,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(
+                      'https://img.freepik.com/premium-vector/blue-comic-retro-burst-background_92086-478.jpg?w=2000'),
+                  fit: BoxFit.cover,
+                ),
+              ),
               child: Center(
                 child: Column(children: <Widget>[
                   Align(
@@ -129,6 +134,7 @@ class _VersusPageState extends State<VersusPage>
                       style: const TextStyle(
                         fontSize: 30.0,
                         fontFamily: 'Agne',
+                        color: Colors.white,
                       ),
                       child: AnimatedTextKit(
                         animatedTexts: [
