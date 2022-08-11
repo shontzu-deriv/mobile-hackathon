@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../models/pokemon_list_model.dart';
 import '../states/pokemon_list_cubit.dart';
 import '../states/pokemon_list_states.dart';
 import '../widgets/pokemon_dialog.dart';
@@ -70,6 +71,18 @@ class _PokeDeckPageState extends State<PokeDeckPage> {
                       return const CircularProgressIndicator();
 
                     if (state is PokemonListLoaded) {
+                      final double viewportWidth =
+                          MediaQuery.of(context).size.width;
+                      List<Result> toRender = _pokeController.text.isNotEmpty
+                          ? List.from(
+                              state.pokemonListModel.results.expand((element) {
+                              if (element.name.contains(_pokeController.text)) {
+                                return <Result>[element];
+                              } else {
+                                return <Result>[];
+                              }
+                            }))
+                          : state.pokemonListModel.results;
                       return GridView.count(
                         // Create grid with 2 columns (scrollDirection horizontal produces 2 rows)
                         crossAxisCount: 3,
@@ -78,29 +91,8 @@ class _PokeDeckPageState extends State<PokeDeckPage> {
                             state.pokemonListModel.results.length, (i) {
                           return GestureDetector(
                             onTap: () {
-                              //todo: show pokemon_dialog
                               showPokemonDialog(context,
                                   state.pokemonListModel.results[i].url);
-                              // showDialog(
-                              //   context: context,
-                              //   builder: (ctx) => AlertDialog(
-                              //     title: Text(
-                              //         state.pokemonListModel.results[i].name),
-                              //     content: Text(
-                              //         state.pokemonListModel.results[i].url),
-                              //     actions: <Widget>[
-                              //       TextButton(
-                              //         onPressed: () {
-                              //           Navigator.of(ctx).pop();
-                              //         },
-                              //         child: Container(
-                              //           padding: const EdgeInsets.all(14),
-                              //           child: const Text("close"),
-                              //         ),
-                              //       ),
-                              //     ],
-                              //   ),
-                              // );
                             },
                             child: Card(
                               // color: Colors.orange[200],

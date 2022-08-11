@@ -4,6 +4,7 @@ import 'package:flutter_pokemon_app/pages/versus_page.dart';
 import '../models/pokemon_list_model.dart';
 import '../states/pokemon_list_cubit.dart';
 import '../states/pokemon_list_states.dart';
+import '../widgets/pokemon_dialog.dart';
 
 void searchPokemon(String query) {}
 
@@ -19,7 +20,7 @@ class _PokeBattlePageState extends State<PokeBattlePage> {
   List<Map<String, String>> pokemons = [];
 
   late TextEditingController _pokeController;
-  bool _IsCheckEmpty = false;
+
 
   bool get canSelectMore => selected.length < 2;
 
@@ -94,60 +95,69 @@ class _PokeBattlePageState extends State<PokeBattlePage> {
                             final rgx = RegExp(r"/([\d]+)[/]{0,1}$");
                             var id =
                                 rgx.firstMatch(element.url)?.group(1) ?? "1";
-                            return Card(
-                              child: Row(
-                                children: [
-                                  ConstrainedBox(
-                                      constraints: BoxConstraints(
-                                          maxWidth: viewportWidth * 0.70),
-                                      child: ListTile(
-                                        leading: Image.network(
-                                            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${id}.gif"),
-                                        title: Text(element.name),
+                            return GestureDetector(
+                              onTap: () {
+                                showPokemonDialog(context,
+                                    state.pokemonListModel.results[i].url);
+                              },
+                              child: Card(
+                                child: Row(
+                                  children: [
+                                    ConstrainedBox(
+                                        constraints: BoxConstraints(
+                                            maxWidth: viewportWidth * 0.70),
+                                        child: ListTile(
+                                          leading: Image.network(
+                                              "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${id}.gif"),
+                                          title: Text(element.name),
 
-                                        // subtitle:
-                                      )),
-                                  ConstrainedBox(
-                                      constraints: BoxConstraints(
-                                          maxWidth: viewportWidth * 0.10),
-                                      child: Checkbox(
-                                        checkColor: Colors.white,
-                                        // fillColor: MaterialStateProperty.resolveWith(getColor),
-                                        value: selected.contains(element.name),
-                                        onChanged: (selected
-                                                    .contains(element.name) ||
-                                                canSelectMore)
-                                            ? (bool? value) {
-                                                setState(() {
-                                                  if (value != null && value) {
-                                                    selected.add(element.name);
-                                                    pokemons.add({
-                                                      'name': state
-                                                          .pokemonListModel
-                                                          .results[i]
-                                                          .name
-                                                          .toString(),
-                                                      'image':
-                                                          "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${id}.gif"
-                                                    });
-                                                  } else {
-                                                    selected
-                                                        .remove(element.name);
-                                                    pokemons.remove({
-                                                      'name': state
-                                                          .pokemonListModel
-                                                          .results[i]
-                                                          .name
-                                                          .toString(),
-                                                      'image':
-                                                          "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${id}.gif"
-                                                    });
-                                                  }
-                                                });
-                                              }
-                                            : null,
-                                      ))
-                                ],
+                                          // subtitle:
+                                        )),
+                                    ConstrainedBox(
+                                        constraints: BoxConstraints(
+                                            maxWidth: viewportWidth * 0.10),
+                                        child: Checkbox(
+                                          checkColor: Colors.white,
+                                          // fillColor: MaterialStateProperty.resolveWith(getColor),
+                                          value:
+                                              selected.contains(element.name),
+                                          onChanged: (selected
+                                                      .contains(element.name) ||
+                                                  canSelectMore)
+                                              ? (bool? value) {
+                                                  setState(() {
+                                                    if (value != null &&
+                                                        value) {
+                                                      selected
+                                                          .add(element.name);
+                                                      pokemons.add({
+                                                        'name': state
+                                                            .pokemonListModel
+                                                            .results[i]
+                                                            .name
+                                                            .toString(),
+                                                        'image':
+                                                            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${id}.gif"
+                                                      });
+                                                    } else {
+                                                      selected
+                                                          .remove(element.name);
+                                                      pokemons.remove({
+                                                        'name': state
+                                                            .pokemonListModel
+                                                            .results[i]
+                                                            .name
+                                                            .toString(),
+                                                        'image':
+                                                            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${id}.gif"
+                                                      });
+                                                    }
+                                                  });
+                                                }
+                                              : null,
+                                        ))
+                                  ],
+                                ),
                               ),
                             );
                           });

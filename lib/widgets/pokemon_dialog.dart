@@ -17,7 +17,7 @@ void showPokemonDialog(BuildContext ctx, final String url) {
     context: ctx,
     builder: (context) => AlertDialog(
       content: SizedBox(
-        height: 150,
+        height: 300,
         child: StatefulBuilder(
           builder: (context, setState) {
             //fire the async stuff here
@@ -52,9 +52,47 @@ void showPokemonDialog(BuildContext ctx, final String url) {
               case _LoaderStates.loading:
                 return const Center(child: CircularProgressIndicator());
               case _LoaderStates.loaded:
-                return Text(data!.name);
+                return Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      (data!.name).toUpperCase(),
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 30),
+                    ),
+                    const Divider(color: Colors.black),
+                    Row(
+                      children: [
+                        Image.network((data!.sprites.frontDefault).toString()),
+                        Column(
+                          children: [
+                            const Text("ABILITIES",
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            Text((data!.abilities[0].ability.name).toString()),
+                            Text((data!.abilities[1].ability.name).toString()),
+                          ],
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 20),
+                    Text("EXP: ${(data!.baseExperience).toString()}"),
+                    LinearProgressIndicator(
+                      value: (data!.baseExperience.toDouble()) / 600,
+                    ),
+                    const SizedBox(height: 20),
+                    Text("HEIGHT: ${(data!.height).toString()}"),
+                    LinearProgressIndicator(
+                      value: (data!.height.toDouble()) / 50,
+                    ),
+                    const SizedBox(height: 20),
+                    Text("WEIGHT: ${(data!.weight).toString()}"),
+                    LinearProgressIndicator(
+                      value: (data!.weight.toDouble()) / 1000,
+                    ),
+                  ],
+                );
               case _LoaderStates.failed:
-                return Text("something messed up");
+                return const Text("something messed up");
             }
             return Container();
           },
