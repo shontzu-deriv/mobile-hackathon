@@ -55,22 +55,39 @@ void showPokemonDialog(BuildContext ctx, final String url) {
                 return Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text((data!.name).toUpperCase()),
-                    const Text("ABILITIES",
-                        // textAlign: TextAlign.start,
-                        style: TextStyle(fontWeight: FontWeight.bold)),
-                    Container(
-                      height: 200,
-                      width: 300.0,
-                      child: ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: data!.abilities.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return ListTile(
-                              title: Text((data!.abilities[index].ability.name)
-                                  .toString()),
-                            );
-                          }),
+                    Text(
+                      (data!.name).toUpperCase(),
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 30),
+                    ),
+                    const Divider(color: Colors.black),
+                    Row(
+                      children: [
+                        Image.network((data!.sprites.frontDefault).toString()),
+                        Column(
+                          children: [
+                            const Text("ABILITIES",
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            Text((data!.abilities[0].ability.name).toString()),
+                            Text((data!.abilities[1].ability.name).toString()),
+                          ],
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 20),
+                    Text("EXP: ${(data!.baseExperience).toString()}"),
+                    LinearProgressIndicator(
+                      value: (data!.baseExperience.toDouble()) / 600,
+                    ),
+                    const SizedBox(height: 20),
+                    Text("HEIGHT: ${(data!.height).toString()}"),
+                    LinearProgressIndicator(
+                      value: (data!.height.toDouble()) / 50,
+                    ),
+                    const SizedBox(height: 20),
+                    Text("WEIGHT: ${(data!.weight).toString()}"),
+                    LinearProgressIndicator(
+                      value: (data!.weight.toDouble()) / 1000,
                     ),
                   ],
                 );
