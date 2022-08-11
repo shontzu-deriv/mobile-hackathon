@@ -8,8 +8,8 @@ import '../states/pokemon_states.dart';
 import '../widgets/pokemon_information.dart';
 import 'list_page.dart';
 
-class LandingPage extends StatelessWidget {
-  const LandingPage({Key? key}) : super(key: key);
+class AlmanacPage extends StatelessWidget {
+  const AlmanacPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +94,7 @@ class LandingPage extends StatelessWidget {
           Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const Homepage(),
+                builder: (context) => const ListPage(),
               ));
         },
         child: const Text(

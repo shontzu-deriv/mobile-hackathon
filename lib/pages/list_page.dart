@@ -12,14 +12,14 @@ import 'list_page.dart';
 
 void searchPokemon(String query) {}
 
-class Homepage extends StatefulWidget {
-  const Homepage({Key? key}) : super(key: key);
+class ListPage extends StatefulWidget {
+  const ListPage({Key? key}) : super(key: key);
 
   @override
-  State<Homepage> createState() => _HomepageState();
+  State<ListPage> createState() => _ListPageState();
 }
 
-class _HomepageState extends State<Homepage> {
+class _ListPageState extends State<ListPage> {
   List<String> selected = List.empty(growable: true);
   List<Map<String, String>> pokemons = [];
 
