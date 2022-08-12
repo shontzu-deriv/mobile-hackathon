@@ -139,7 +139,7 @@ class _VersusPageState extends State<VersusPage>
                       child: AnimatedTextKit(
                         animatedTexts: [
                           TypewriterAnimatedText(
-                              '${widget.selected[1]['name']}'),
+                              '${widget.selected[1]['name']} ${widget.selected[1]['']}'),
                         ],
                       ),
                     ),

@@ -13,8 +13,9 @@ class PokemonListCubit extends Cubit<PokemonListStates> {
       PokemonListModel pokemonListModel =
           await PokemonListService().fetchAllPokemon();
       emit(PokemonListLoaded(pokemonListModel: pokemonListModel));
-    } catch (e) {
+    } catch (e, st) {
       print(e);
+      print(st);
       emit(PokemonListError(errorMessage: e.toString()));
     }
   }

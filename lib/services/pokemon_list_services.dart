@@ -9,13 +9,20 @@ class PokemonListService {
       scheme: 'https',
       host: 'pokeapi.co',
       path: '/api/v2/pokemon',
+      queryParameters: {'limit': "2000", 'offset': "0"},
     );
 
     http.Response response = await http.get(url);
 
     if (response.statusCode == 200 /*ok*/) {
       // print(PokemonModel.fromJson(response.body));
-      return PokemonListModel.fromJson(response.body);
+      try {
+        return PokemonListModel.fromJson(response.body);
+      } catch (_, st) {
+        print(_.toString());
+        print(st);
+        rethrow;
+      }
     } else {
       throw Exception("failed to load weather information");
     }

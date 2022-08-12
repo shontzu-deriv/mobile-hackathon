@@ -100,9 +100,12 @@ class _PokeDeckPageState extends State<PokeDeckPage> {
                         crossAxisCount: 3,
                         // Generate 100 widgets that display their index in the List.
                         children: List.generate(toRender.length, (i) {
+                          final element = toRender[i];
+                          final rgx = RegExp(r"/([\d]+)[/]{0,1}$");
+                          var id = rgx.firstMatch(element.url)?.group(1) ?? "1";
                           return GestureDetector(
                             onTap: () {
-                              showPokemonDialog(context, toRender[i].url);
+                              showPokemonDialog(context, element.url);
                             },
                             child: Card(
                               // color: Colors.orange[200],
@@ -117,13 +120,22 @@ class _PokeDeckPageState extends State<PokeDeckPage> {
                                   children: <Widget>[
                                     FittedBox(
                                       child: Image.network(
-                                        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${i + 1}.gif",
+                                        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${id}.gif",
                                         fit: BoxFit.fill,
                                         height: 100,
                                         width: 100,
+                                        errorBuilder:
+                                            (context, error, stackTrace) {
+                                          return Image.network(
+                                            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$id.png",
+                                            fit: BoxFit.fill,
+                                            // height: 100,
+                                            // width: 100,
+                                          );
+                                        },
                                       ),
                                     ),
-                                    Text(toRender[i].name),
+                                    Text(element.name),
                                   ],
                                 ),
                               ),

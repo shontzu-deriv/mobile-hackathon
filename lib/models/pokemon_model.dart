@@ -444,7 +444,7 @@ class Sprites {
     // required this.animated,
   });
 
-  final String backDefault;
+  final String? backDefault;
   final dynamic backFemale;
   final String backShiny;
   final dynamic backShinyFemale;

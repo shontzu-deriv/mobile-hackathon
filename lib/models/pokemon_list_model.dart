@@ -10,7 +10,7 @@ class PokemonListModel {
   });
 
   final int count;
-  final String next;
+  final String? next;
   final dynamic previous;
   final List<Result> results;
 
