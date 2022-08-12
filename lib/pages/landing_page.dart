@@ -16,24 +16,13 @@ class LandingPage extends StatelessWidget {
             'lib/background.jpg',
           ),
           fit: BoxFit.cover,
-          // colorFilter: ColorFilter.mode(Colors.white.withOpacity(0.5), BlendMode.modulate,)
         ),
       ),
-
       child: Center(
-
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [ Anime(),
-
-        //
-        // const Image(
-        // alignment: Alignment.topCenter,
-        //   height: 375,
-        //   width: 375,
-        //   image: AssetImage('lib/pokemon.png'),
-        // ),
-
+          children: [
+            Anime(),
             SizedBox(height: 100),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -48,21 +37,20 @@ class LandingPage extends StatelessWidget {
                   },
                   child: const Text(
                     "POKE DECK",
-                    style: TextStyle(fontSize: 20,color: Colors.red,fontWeight: FontWeight.bold  ),
+                    style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.red,
+                        fontWeight: FontWeight.bold),
                   ),
                   style: ButtonStyle(
-                      backgroundColor:MaterialStateProperty.all(Colors.white),
+                    backgroundColor: MaterialStateProperty.all(Colors.white),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(18.0),
-                            side: BorderSide(color: Colors.black)
-                        )
-                    ),
-
+                            side: BorderSide(color: Colors.black))),
                     shadowColor: MaterialStateProperty.all(Colors.red),
-                      elevation: MaterialStateProperty.all(12),
+                    elevation: MaterialStateProperty.all(12),
                   ),
-
                 ),
                 ElevatedButton(
                   onPressed: () {
@@ -74,29 +62,27 @@ class LandingPage extends StatelessWidget {
                   },
                   child: const Text(
                     "POKE BATTLE",
-                    style: TextStyle(fontSize: 20,color: Colors.red,fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.red,
+                        fontWeight: FontWeight.bold),
                   ),
                   style: ButtonStyle(
-                    backgroundColor:MaterialStateProperty.all(Colors.white),
+                    backgroundColor: MaterialStateProperty.all(Colors.white),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(18.0),
-                            side: BorderSide(color: Colors.black)
-                        )
-                  ),
+                            side: BorderSide(color: Colors.black))),
                     shadowColor: MaterialStateProperty.all(Colors.red),
                     elevation: MaterialStateProperty.all(12),
-
-                ),
+                  ),
                 ),
               ],
             ),
             SizedBox(height: 50),
-
           ],
         ),
       ),
     ));
   }
 }
-

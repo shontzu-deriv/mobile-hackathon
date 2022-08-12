@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_pokemon_app/models/pokemon_model.dart';
 
 import '../states/pokemon_cubit.dart';
 
@@ -20,13 +19,11 @@ class VersusPage extends StatefulWidget {
 
 class _VersusPageState extends State<VersusPage>
     with SingleTickerProviderStateMixin {
-  // late TextEditingController _pokeController;
   late AnimationController _animationController;
 
   @override
   void initState() {
     super.initState();
-    // _pokeController = TextEditingController();
     _animationController = AnimationController(
         vsync: this,
         duration: const Duration(
