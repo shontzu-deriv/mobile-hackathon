@@ -129,8 +129,8 @@ class _PokeDeckPageState extends State<PokeDeckPage> {
                                           return Image.network(
                                             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$id.png",
                                             fit: BoxFit.fill,
-                                            // height: 100,
-                                            // width: 100,
+                                            height: 100,
+                                            width: 100,
                                           );
                                         },
                                       ),

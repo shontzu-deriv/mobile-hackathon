@@ -107,7 +107,7 @@ class _PokeBattlePageState extends State<PokeBattlePage> {
                                             maxWidth: viewportWidth * 0.70),
                                         child: ListTile(
                                           leading: Image.network(
-                                              "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${id}.gif"),
+                                              "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/$id.gif"),
                                           title: Text(element.name),
 
                                           // subtitle:
