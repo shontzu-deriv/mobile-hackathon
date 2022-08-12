@@ -10,7 +10,7 @@ class LandingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage(
             'lib/background.jpg',
@@ -22,8 +22,8 @@ class LandingPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Anime(),
-            SizedBox(height: 100),
+            const Anime(),
+            const SizedBox(height: 100),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -35,21 +35,21 @@ class LandingPage extends StatelessWidget {
                           builder: (context) => const PokeDeckPage(),
                         ));
                   },
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Colors.white),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(18.0),
+                            side: const BorderSide(color: Colors.black))),
+                    shadowColor: MaterialStateProperty.all(Colors.red),
+                    elevation: MaterialStateProperty.all(12),
+                  ),
                   child: const Text(
                     "POKE DECK",
                     style: TextStyle(
                         fontSize: 20,
                         color: Colors.red,
                         fontWeight: FontWeight.bold),
-                  ),
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.white),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.0),
-                            side: BorderSide(color: Colors.black))),
-                    shadowColor: MaterialStateProperty.all(Colors.red),
-                    elevation: MaterialStateProperty.all(12),
                   ),
                 ),
                 ElevatedButton(
@@ -60,6 +60,15 @@ class LandingPage extends StatelessWidget {
                           builder: (context) => const PokeBattlePage(),
                         ));
                   },
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Colors.white),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(18.0),
+                            side: const BorderSide(color: Colors.black))),
+                    shadowColor: MaterialStateProperty.all(Colors.red),
+                    elevation: MaterialStateProperty.all(12),
+                  ),
                   child: const Text(
                     "POKE BATTLE",
                     style: TextStyle(
@@ -67,19 +76,10 @@ class LandingPage extends StatelessWidget {
                         color: Colors.red,
                         fontWeight: FontWeight.bold),
                   ),
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.white),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.0),
-                            side: BorderSide(color: Colors.black))),
-                    shadowColor: MaterialStateProperty.all(Colors.red),
-                    elevation: MaterialStateProperty.all(12),
-                  ),
                 ),
               ],
             ),
-            SizedBox(height: 50),
+            const SizedBox(height: 50),
           ],
         ),
       ),
