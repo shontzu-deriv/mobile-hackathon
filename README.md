@@ -1,6 +1,8 @@
 # Pokemon App
 Final Project for Mobile App module (BeSquare by Deriv)
 
+![Watch the video](https://github.com/shontzu/mobile-hackathon/blob/main/mobile_final_project_demo.webm)
+
 <div style="display: flex;">
 <img src="https://user-images.githubusercontent.com/108507236/184317853-c6cbd441-5921-45bc-8c31-ec1a1136c61c.png" alt="drawing" width="120"/>
 <img src="https://user-images.githubusercontent.com/108507236/184317871-c812e740-2065-4718-b9e9-85d4952d70b8.png" alt="drawing" width="120"/>
@@ -10,5 +12,4 @@ Final Project for Mobile App module (BeSquare by Deriv)
 <img src="https://user-images.githubusercontent.com/108507236/184317916-9c7208b3-4121-41fa-aff1-3595269e2eb9.png" alt="drawing" width="120"/>
 <img src="https://user-images.githubusercontent.com/108507236/184317929-29b085e2-5703-4242-965c-ce600e172a6e.png" alt="drawing" width="120"/>
 </div>
-
 
